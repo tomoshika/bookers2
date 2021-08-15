@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  def new
+    @user = User.find(params[:id])
+    redirect_to user_path(@user.id)
+  end
+
 
   protected
 
