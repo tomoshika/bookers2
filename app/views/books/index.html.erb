@@ -1,7 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-">
+    <div class="col-md-3">
       <h2>User info</h2>
+      <%= attechment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      <table class="table">
+        <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= @user.name %></th>
+            </th>
+            <tr>
+              <th>introduction</th>
+              <th></th>
+            </tr>
+        </tbody>
+      </table>
       
       
     </div>
