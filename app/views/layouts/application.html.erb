@@ -54,14 +54,15 @@
        </div>
       </nav>
     </header>
-    <main class="mb-auto">
+    <main>
       <% if flash[:notice] %>
         <p id="notice"><%= flash[:notice] %></p>
 　    <% end %>
-　    <% if flash[:alert] %>
-        <p id="alert"><%= flash[:alert] %></p>
-      <% end %>
-      <%= yield %>
+　    <div class="container px-5 px-sm-0">
+        <div class="row">
+          <%= yield %>
+        </>
+      </div>
     </main>
 
     <footer>
