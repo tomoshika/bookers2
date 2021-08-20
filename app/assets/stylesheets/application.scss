@@ -16,23 +16,31 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
- 
+
  strong {
   font-weight: bolder;
  }
- 
+
  .btn-login {
   color: white;
   background-color: #17a2b8;
   border-color: #17a2b8;
  }
- 
+
  .btn-signup {
   color: white;
   background-color: #28a745;
   border-color: #28a745;
  }
- 
+
  div.field, div.actions {
   margin-bottom: 10px;
  }
+
+ #notice {
+  color: green;
+ }
+
+#error_explanation, #alert {
+ color: red;
+}
