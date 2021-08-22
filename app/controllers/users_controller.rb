@@ -6,8 +6,11 @@ class UsersController < ApplicationController
 
   def create
     @book = @user.book.new(book_params)
-    @book.save
-    redirect_to book_path(@book.id)
+   if @book.save
+    redirect_to book_path(@book.id), notice: "You have created book successfully."
+   else
+    redirect_to books_path
+   end
   end
 
   def index
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user)
     end
   end
 
