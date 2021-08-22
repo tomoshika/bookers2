@@ -1,9 +1,10 @@
 
      <div class="col-md-3">
       <h2>User info</h2>
-        <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
         <table class="table">
           <tbody>
+            <tr></tr>
             <tr>
               <th>name</th>
               <th><%= user.name %></th>
@@ -15,7 +16,7 @@
           </tbody>
         </table>
         <div class="row">
-          <%= link_to edit_user_registration_path(user), class: "btn btn-outline-secondary btn-block btn-sm", method: :get do %>
+          <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block btn-sm", method: :get do %>
             <i class="fas fa-user-cog"></i>
           <% end %>
         </div>
