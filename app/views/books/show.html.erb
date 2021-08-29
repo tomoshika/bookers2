@@ -54,7 +54,7 @@
               <% @book.post_comments.each do |post_comment| %>
                 <td>
                   <%= attachment_image_tag post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
-                  <%= post_comment.user.name %>
+                  <%= link_to @book.post_comments.name, user_path(@book.post_comments.user) %>
                 </td>
                 <td><%= post_comment.comment %></td>
                 <% if post_comment.user == current_user %>
@@ -70,9 +70,6 @@
             <%= f.submit "送信" %>
           <% end %>
         </div>
-
-
-
       </div>
 
     </div>
