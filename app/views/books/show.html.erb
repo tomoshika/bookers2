@@ -52,25 +52,27 @@
           <tbody>
             <tr>
               <% @book.post_comments.each do |post_comment| %>
-              <td>
-                <%= attachment_image_tag @book.post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
-                <%= post_comment.user.name %>
-              </td>
-              <td><%= post_comment.comment %></td>
-              <td><%= link_to "Destroy"></td>
+                <td>
+                  <%= attachment_image_tag post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
+                  <%= post_comment.user.name %>
+                </td>
+                <td><%= post_comment.comment %></td>
+                <% if post_comment.user == current_user %>
+                 <td><%= link_to "Destroy", book_post_comments_path(@book.post_comments), method: :delete, class: "btn btn-sm btn-danger" %></td>
+                <% end %>
               <% end %>
             </tr>
-        </div>
-        
-        
+          </tbody>
+        </table>
         <div class="new-comment">
           <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
-            <%= f.text_area :comment %>
+            <%= f.text_area :comment, class: "form-control" %>
             <%= f.submit "送信" %>
           <% end %>
-        </table>
-        
-        
+        </div>
+
+
+
       </div>
 
     </div>
