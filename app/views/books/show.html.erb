@@ -50,23 +50,23 @@
         </table>
         <table class="comments">
           <tbody>
-            <tr>
-              <% @book.post_comments.each do |post_comment| %>
+            <% @book.post_comments.each do |post_comment| %>
+            　<tr>
                 <td>
                   <%= attachment_image_tag post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
-                  <%= link_to @book.post_comments.name, user_path(@book.post_comments.user) %>
+                  <%= link_to post_comment.user.name, user_path(post_comment.user) %>
                 </td>
                 <td><%= post_comment.comment %></td>
                 <% if post_comment.user == current_user %>
-                 <td><%= link_to "Destroy", book_post_comments_path(@book.post_comments), method: :delete, class: "btn btn-sm btn-danger" %></td>
+                 <td><%= link_to "Destroy", book_post_comments_path(post_comment.book, post_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
                 <% end %>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           </tbody>
         </table>
-        <div class="new-comment">
+        <div class="new-comment mt-3">
           <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
-            <%= f.text_area :comment, class: "form-control" %>
+            <%= f.text_area :comment, class: "form-control form-control-lg mb-2" %>
             <%= f.submit "送信" %>
           <% end %>
         </div>
