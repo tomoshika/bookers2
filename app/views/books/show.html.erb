@@ -28,20 +28,8 @@
                 </td>
                 <td><%= link_to @book.title, book_path(@book) %></td>
                 <td><%= @book.body %></td>
-                <% if @book.favorited_by?(current_user) %>
-                  <td>
-                    <%= link_to book_favorites_path(@book), method: :delete do %>
-                      <div class="btn-favorite">♥<%= @book.favorites.count %></div>
-                    <% end %>
-                  </td>
-                <% else %>
-                  <td>
-                    <%= link_to book_favorites_path(@book), method: :post do %>
-                      <div class="btn-unfavorite">♥<%= @book.favorites.count %></div>
-                    <% end %>
-                  </td>
-                <% end %>
-                <td>コメント件数：<%= @book.post_comments.count %></td>
+                <td class="favorite-btn"><%= render "favorites/favorite-btn", book: @book %></td>
+                <td>コメント数：<%= @book.post_comments.count %></td>
                 <% if @book.user == current_user %>
                  <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
                  <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
@@ -49,28 +37,7 @@
               </tr>
           </tbody>
         </table>
-        <table class="comments">
-          <tbody>
-            <% @book.post_comments.each do |post_comment| %>
-            　<tr>
-                <td>
-                  <%= attachment_image_tag post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
-                  <%= link_to post_comment.user.name, user_path(post_comment.user) %>
-                </td>
-                <td><%= post_comment.comment %></td>
-                <% if post_comment.user == current_user %>
-                 <td><%= link_to "Destroy", book_post_comment_path(@book, post_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
-                <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="new-comment mt-3">
-          <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
-            <%= f.text_area :comment, class: "form-control form-control-lg mb-2" %>
-            <%= f.submit "送信" %>
-          <% end %>
-        </div>
+       <%= render 'books/post_comment', book: @book, post_comment: @post_comment%>
       </div>
 
     </div>

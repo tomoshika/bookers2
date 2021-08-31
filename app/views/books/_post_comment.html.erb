@@ -1,0 +1,22 @@
+ <table class="comments">
+    <tbody>
+      <% @book.post_comments.each do |post_comment| %>
+        <tr>
+          <td>
+            <%= attachment_image_tag post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
+            <%= link_to post_comment.user.name, user_path(post_comment.user) %>
+          </td>
+          <td><%= post_comment.comment %></td>
+          <% if post_comment.user == current_user %>
+            <td><%= link_to "Destroy", book_post_comment_path(@book, post_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="new-comment mt-3">
+    <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
+      <%= f.text_area :comment, class: "form-control form-control-lg mb-2" %>
+      <%= f.submit "送信" %>
+    <% end %>
+  </div>
