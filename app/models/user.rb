@@ -22,5 +22,4 @@ class User < ApplicationRecord
    #フォローされてるかを判定する
 
 
-
 end
