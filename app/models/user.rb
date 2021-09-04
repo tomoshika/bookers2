@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :books, dependent: :destroy
   attachment :profile_image, destroy: false
-  
+
   has_many :relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :follower
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -14,12 +14,13 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: {maximum: 50}
-  
-  
+
+
   def is_followed_by?(user)
     reverse_of_relationships.find_by(following_id: user.id).present?
   end
    #フォローされてるかを判定する
-   
-   
+
+
+
 end
