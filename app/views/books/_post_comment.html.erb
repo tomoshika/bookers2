@@ -8,15 +8,9 @@
           </td>
           <td><%= post_comment.comment %></td>
           <% if post_comment.user == current_user %>
-            <td><%= link_to "Destroy", book_post_comment_path(@book, post_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
+            <td><%= link_to "Destroy", book_post_comment_path(@book, post_comment), method: :delete, remote: true class: "btn btn-sm btn-danger" %></td>
           <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <div class="new-comment mt-3">
-    <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
-      <%= f.text_area :comment, class: "form-control form-control-lg mb-2" %>
-      <%= f.submit "送信" %>
-    <% end %>
-  </div>
