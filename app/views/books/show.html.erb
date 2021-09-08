@@ -27,8 +27,12 @@
               </tr>
           </tbody>
         </table>
-       <%= render 'books/post_comment', book: @book, post_comment: @post_comment%>
-       <%= render 'books/comment_form', book: @book, post_comment: @post_comment%>
+        <div id="post_comment-<%= book.id %>">
+          <%= render 'post_comments/post_comment', book: @book, post_comment: @post_comment%>
+        </div>
+        <div id="po-<%= book.id %>">
+          <%= render 'post_comments/comment_form', book: @book, post_comment: @post_comment%>
+        </div>
       </div>
 
     </div>
