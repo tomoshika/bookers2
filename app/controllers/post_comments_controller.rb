@@ -6,7 +6,7 @@ class PostCommentsController < ApplicationController
     comment = current_user.post_comments.new(post_comment_params)
     comment.book_id = book.id
     comment.save
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -15,7 +15,7 @@ class PostCommentsController < ApplicationController
 
    if current_user.id == comment.user.id
       comment.destroy
-      redirect_back(fallback_location: root_path)
+      # redirect_back(fallback_location: root_path)
    else
       redirect_to "books/show"
    end

@@ -1,2 +1,1 @@
-$("#post_comment-<%= @book.id %>").html("<%= j(render 'post_comments/post_comment', book: @book ) %>");
-$(".inputComment").val('');
+$("#favorite-<%= @book.id %>").html("<%= j(render 'favorites/favorite_btn', book: @book ) %>");

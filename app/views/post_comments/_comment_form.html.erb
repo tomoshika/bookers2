@@ -1,6 +1,6 @@
  <div class="new-comment mt-3">
-    <%= form_with model:[book, post_comment], remote: true, do |f| %>
-      <%= f.text_area :comment, class: "form-control form-control-lg mb-2" %>
+    <%= form_with model:[book, post_comment], remote: true do |f| %>
+      <%= f.text_area :comment, class: "inputComment form-control form-control-lg mb-2" %>
       <%= f.submit "送信" %>
     <% end %>
  </div>

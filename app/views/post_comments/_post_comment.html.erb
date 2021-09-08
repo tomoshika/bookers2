@@ -1,6 +1,6 @@
  <table class="comments">
     <tbody>
-      <% @book.post_comments.each do |post_comment| %>
+      <% book.post_comments.each do |post_comment| %>
         <tr>
           <td>
             <%= attachment_image_tag post_comment.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></br>
@@ -8,7 +8,7 @@
           </td>
           <td><%= post_comment.comment %></td>
           <% if post_comment.user == current_user %>
-            <td><%= link_to "Destroy", book_post_comment_path(@book, post_comment), method: :delete, remote: true, class: "btn btn-sm btn-danger" %></td>
+            <td><%= link_to "Destroy", book_post_comment_path(book, post_comment), method: :delete, remote: true, class: "btn btn-sm btn-danger" %></td>
           <% end %>
         </tr>
       <% end %>
